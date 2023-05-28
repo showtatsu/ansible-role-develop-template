@@ -1,0 +1,15 @@
+galaxy_info:
+  role_name: role_develop_template
+  namespace: showtatsu
+  author: Tatsuya SHORIKI
+  description: A special role
+  company: ""
+
+  license: Not Specified
+  min_ansible_version: "2.1"
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - jammy
+    - focal
