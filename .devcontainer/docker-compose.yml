@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        DOCKER_GROUP_GID: ${DOCKER_GROUP_GID:-999}
+    volumes:
+      - ../..:/workspaces:cached
+      - ${DOCKER_SOCKET_PATH:-/var/run/docker.sock}:/var/run/docker.sock:rw
+    command: ["sleep", "infinity"]
+    environment:
+    - ANSIBLE_HOST_KEY_CHECKING=False
+    networks:
+      - ansible_test
+
+networks:
+  ansible_test: {}
