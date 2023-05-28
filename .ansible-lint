@@ -1,0 +1,9 @@
+profile: production
+exclude_paths:
+  - .cache/
+  - .github/
+  - .vscode/
+  - .devcontainer/
+skip_list:
+  - role-name
+  - risky-file-permissions
