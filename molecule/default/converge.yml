@@ -1,0 +1,23 @@
+# テスト用ターゲットサーバにAnsibleで構成ファイルを配布します。
+- name: Converge
+  hosts: targets
+  gather_facts: true
+  tasks:
+    # リポジトリのルートがAnsible Role になっている場合、
+    # そのRoleを読み込んで適用します。
+    - name: "Include role"
+      ansible.builtin.include_role:
+        name: "../../.."
+
+    # テストのための追加コンテンツリリースが必要であれば、
+    # Role適用後に追加のTaskを実行します。
+
+    # - name: "Create test sites"
+    #   ansible.builtin.file:
+    #     path: "/var/www/html/default"
+    #     state: directory
+
+    # - name: "Create site files"
+    #   ansible.builtin.copy:
+    #     dest: "/var/www/html/default/index.txt"
+    #     content: "Site default"

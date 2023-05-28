@@ -1,0 +1,3 @@
+molecule==3.2.3
+docker
+requests
