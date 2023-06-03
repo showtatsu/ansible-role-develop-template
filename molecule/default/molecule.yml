@@ -5,9 +5,10 @@ driver:
 platforms:
 
   - name: ubuntu22
-    image: docker.io/showtatsu/ansible-target:ubuntu-22.04
+    image: docker.io/showtatsu/ansible-target:ubuntu-22.04-systemd
     groups:
       - target
+    privileged: true
 
 
 provisioner:

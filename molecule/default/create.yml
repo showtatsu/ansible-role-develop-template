@@ -1,6 +1,4 @@
 ---
-# テスト用ターゲットサーバを起動します。
-# Dockerコンテナを利用するため、一部のテストに制限が出ることは認識ください。
 - name: Create
   hosts: localhost
   connection: local
@@ -16,6 +14,11 @@
         container_default_behavior: no_defaults
         auto_remove: false
         detach: true
-        env:
-          SSH_USER: ansible
-          SSH_PASSWORD: ansible
+        privileged: "{{ item.privileged | default(false) | bool }}"
+        command: "{{ item.command | default(omit) }}"
+        tty: true
+        tmpfs:
+          - /run
+          - /tmp
+        volumes:
+          - /sys/fs/cgroup:/sys/fs/cgroup:ro
