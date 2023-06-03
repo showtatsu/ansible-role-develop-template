@@ -1,7 +1,0 @@
-[targets]
-ubuntu22 ansible_connection=docker
-# ubuntu20 ansible_connection=docker
-# centos7  ansible_connection=docker
-
-[all:vars]
-ansible_become_password=ansible

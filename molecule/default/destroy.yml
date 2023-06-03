@@ -6,18 +6,9 @@
   gather_facts: false
 
   tasks:
-    - name: set_fact molecule_platforms
-      ansible.builtin.set_fact:
-        molecule_platforms: "{{ molecule_yml.platforms }}"
-
     - name: Remove target container
-      with_list: "{{ molecule_platforms  }}"
+      with_list: "{{ molecule_yml.platforms  }}"
       community.docker.docker_container:
         name: "{{ item.name }}"
         container_default_behavior: no_defaults
-        state: absent
-
-    - name: Delete a network
-      community.docker.docker_network:
-        name: "{{ molecule_platforms.0.networks[0].name }}"
         state: absent

@@ -1,6 +1,6 @@
 # テスト用ターゲットサーバにAnsibleで構成ファイルを配布します。
 - name: Converge
-  hosts: targets
+  hosts: target
   gather_facts: true
   tasks:
     # リポジトリのルートがAnsible Role になっている場合、

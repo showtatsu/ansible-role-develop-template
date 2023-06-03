@@ -1,36 +1,31 @@
 ---
-role_name_check: 0
-dependency:
-  name: galaxy
-
 driver:
   name: delegated
 
 platforms:
+
   - name: ubuntu22
     image: docker.io/showtatsu/ansible-target:ubuntu-22.04
-    networks:
-      - name: molecule_test
-  # - name: ubuntu20
-  #   image: docker.io/showtatsu/ansible-target:ubuntu-20.04
-  #   networks:
-  #     - name: molecule_test
-  # - name: centos7
-  #   image: docker.io/showtatsu/ansible-target:centos-7
-  #   networks:
-  #     - name: molecule_test
+    groups:
+      - target
+
 
 provisioner:
   name: ansible
   inventory:
-    links:
-      hosts: ./inventory
-  config_options:
-    defaults:
-      gathering: explicit
+    hosts:
+      all:
+        vars:
+          ansible_connection: docker
 
 verifier:
   name: ansible
+
+dependency:
+  name: galaxy
+
+role_name_check: 0
+
 lint: |
   set -e
   yamllint .

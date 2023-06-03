@@ -1,4 +1,4 @@
 - name: Verify
-  hosts: targets
+  hosts: target
   gather_facts: false
   tasks: []

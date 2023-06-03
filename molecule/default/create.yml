@@ -7,24 +7,13 @@
   gather_facts: false
 
   tasks:
-    - name: set_fact molecule_platforms
-      ansible.builtin.set_fact:
-        molecule_platforms: "{{ molecule_yml.platforms }}"
-
-    - name: Create a network
-      community.docker.docker_network:
-        name: "{{ molecule_platforms.0.networks[0].name }}"
-
     - name: Start a target server
-      with_list: "{{ molecule_platforms }}"
+      with_list: "{{ molecule_yml.platforms  }}"
       community.docker.docker_container:
         name: "{{ item.name }}"
         image: "{{ item.image }}"
-        networks:
-          - name: "{{ item.networks[0].name }}"
         state: "started"
         container_default_behavior: no_defaults
-        network_mode: "{{ item.networks[0].name }}"
         auto_remove: false
         detach: true
         env:
