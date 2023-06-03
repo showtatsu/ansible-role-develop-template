@@ -10,6 +10,17 @@ platforms:
       - target
     privileged: true
 
+  - name: ubuntu20
+    image: docker.io/showtatsu/ansible-target:ubuntu-20.04-systemd
+    groups:
+      - target
+    privileged: true
+
+  - name: centos8s
+    image: docker.io/showtatsu/ansible-target:centos-8s-systemd
+    groups:
+      - target
+    privileged: true
 
 provisioner:
   name: ansible
